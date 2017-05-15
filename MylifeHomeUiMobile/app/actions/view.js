@@ -11,7 +11,7 @@ function getDefaultView(dispatch, done) {
   return dispatch(actions.resourceQuery({ resource: 'default_window', done: (err, data) => {
     if(err) { return done(err); } // eslint-disable-line no-console
     const windows = JSON.parse(data);
-    return done(null, browser.isMobile ? windows.mobile : windows.desktop);
+    return done(null, windows.mobile);
   }}));
 }
 

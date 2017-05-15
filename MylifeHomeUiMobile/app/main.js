@@ -6,12 +6,14 @@ import { Provider } from 'react-redux';
 
 import { applyMiddleware, createStore } from 'redux';
 import thunk from 'redux-thunk';
-import { middlewares } from 'mylife-home-ui-common';
+import { middlewares, utils } from 'mylife-home-ui-common';
 import reducer from './reducers/index';
 
 import View from './containers/view';
 
 import { viewInit } from './actions/view';
+
+utils.setupLocation('http://mylife-home-ui.apps.mti-team2.dyndns.org');
 
 const store = createStore(
   reducer,
