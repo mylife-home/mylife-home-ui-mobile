@@ -1,3 +1,3 @@
 'use strict';
 
-import from './app/main';
+import './app/main';
