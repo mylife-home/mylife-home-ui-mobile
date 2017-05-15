@@ -15,8 +15,7 @@ function getDefaultView(dispatch, done) {
   }}));
 }
 
-export const viewInit = () => (dispatch, getState) => {
-  const state = getState();
+export const viewInit = () => (dispatch) => {
   return getDefaultView(dispatch, (err, defaultWindow) => {
     if(err) { return console.error(err); } // eslint-disable-line no-console
 
@@ -25,7 +24,7 @@ export const viewInit = () => (dispatch, getState) => {
   });
 };
 
-export const viewChange = (id) => (dispatch, getState) => {
+export const viewChange = (id) => (dispatch) => {
   return dispatch(actions.windowLoad(id, (err) => {
     if(err) { return console.error(err); } // eslint-disable-line no-console
     return dispatch(internalViewChange(id));
