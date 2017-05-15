@@ -65,7 +65,6 @@
 		1E5624BAEBE847A8BA1D9048 /* SanFrancisco.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 3747E7ED5616469382DD370A /* SanFrancisco.ttf */; };
 		19B9D0EB4DBB4E4497671D6F /* SanFranciscoBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 5C64B87A4FFD484E9ED72DDB /* SanFranciscoBold.ttf */; };
 		905E682B9BB449EEB167392F /* SanFranciscoThin.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 2FD42C72A90748E1B76CB07C /* SanFranciscoThin.ttf */; };
-		4C388C2C99FE41639CA35E24 /* SimpleLineIcons.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 771E28AA16174E3BAB8EF758 /* SimpleLineIcons.ttf */; };
 		4E182E777EE24DF186873E45 /* Skia.ttf in Resources */ = {isa = PBXBuildFile; fileRef = ACC3003DFA284C689BF36B8F /* Skia.ttf */; };
 		38168CBDCD8E42A58442598A /* Times New Roman.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 3C20CF1FCA864816ADC00D54 /* Times New Roman.ttf */; };
 		6763919BA3DD486499676895 /* Zocial.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 92CA2D52BDE44FE39CD6411D /* Zocial.ttf */; };
