@@ -10,7 +10,7 @@
     "mylife-home-ui-common": "vincent-tr/mylife-home-ui-common",
     "native-base": "^2.1.3",
     "react": "15.4.2",
-    "react-native": "0.44.0"
+    "react-native": "0.41.2"
   },
   "devDependencies": {
     "babel-jest": "18.0.0",
