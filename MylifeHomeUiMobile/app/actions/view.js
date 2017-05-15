@@ -1,7 +1,7 @@
 'use strict';
 
 import { createAction } from 'redux-actions';
-import { constants, actions, selectors } from 'mylife-home-ui-common/lib/index';
+import { constants, actions, selectors } from 'mylife-home-ui-common';
 
 const internalViewPopup  = createAction(constants.actionTypes.VIEW_POPUP);
 const internalViewClose  = createAction(constants.actionTypes.VIEW_CLOSE);
@@ -11,7 +11,7 @@ function getDefaultView(dispatch, done) {
   return dispatch(actions.resourceQuery({ resource: 'default_window', done: (err, data) => {
     if(err) { return done(err); } // eslint-disable-line no-console
     const windows = JSON.parse(data);
-    return done(null, windows.mobile);
+    return done(null, browser.isMobile ? windows.mobile : windows.desktop);
   }}));
 }
 

@@ -1,7 +1,7 @@
 'use strict';
 
 import { createAction } from 'redux-actions';
-import { constants, selectors } from 'mylife-home-ui-common/lib/index';
+import { constants, selectors } from 'mylife-home-ui-common';
 import { viewChange, viewPopup } from './view';
 
 const actionComponent = createAction(constants.actionTypes.ACTION_COMPONENT);
