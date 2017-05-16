@@ -23,13 +23,13 @@ const styles = StyleSheet.create({
   connectingImage: {
     width        : 120,
     height       : 90,
-    borderWidth  : 1,
+    borderWidth  : 0,
     borderRadius : 4
   },
   waitingImage: {
     width        : 90,
     height       : 90,
-    borderWidth  : 1,
+    borderWidth  : 0,
     borderRadius : 4
   }
 });

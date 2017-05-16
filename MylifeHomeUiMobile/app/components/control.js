@@ -1,13 +1,47 @@
 'use strict';
 
 import React from 'react';
-import { View, Image } from 'react-native';
+import { View, Image, Text, StyleSheet, TouchableHighlight } from 'react-native';
+import { getPhysicalSize, getPhysicalPosition } from '../utils/viewport.js';
 
 import { utils } from 'mylife-home-ui-common';
 
+const styles = StyleSheet.create({
+  wrapper: {
+    position   : 'absolute',
+    top        : 0,
+    left       : 0,
+    right      : 0,
+    bottom     : 0,
+  },
+  image: {
+    position   : 'absolute',
+    top        : 0,
+    left       : 0,
+    right      : 0,
+    bottom     : 0,
+    resizeMode : 'contain'
+  },
+  text: {
+    position : 'absolute',
+    top      : 0,
+    left     : 0,
+    right    : 0,
+    bottom   : 0
+  },
+  active: {
+    borderWidth  : 1,
+    borderRadius : 4,
+    borderColor  : 'rgb(200, 200, 200)'
+    // TODO: animate on hover
+  }
+});
+
 function getStyleSizePosition(control) {
-  const { left, top, height, width } = control;
-  return { left, top, height, width };
+  return {
+    ... getPhysicalSize(control),
+    ... getPhysicalPosition(control)
+  };
 }
 
 class Control extends React.PureComponent {
@@ -32,19 +66,31 @@ class Control extends React.PureComponent {
     };
   }
 
+  renderInner(control) {
+    return (
+      <View style={styles.wrapper}>
+        {control.display && (<Image style={styles.image} source={{ uri: `data:image/png;base64,${control.display}`}} />)}
+        {control.text && (<Text style={styles.text}>{control.text}</Text>)}
+      </View>
+    );
+  }
+
   render() {
     const { control } = this.props;
 
     return (
-      <View title={control.id}
-           style={getStyleSizePosition(control)}
-           className={control.active ? 'mylife-control-button' : 'mylife-control-inactive'}
-           onTouchStart={(e) => this.inputManager.down(e)}
-           onTouchEnd={(e) => this.inputManager.up(e)}
-           onMouseDown={(e) => this.inputManager.down(e)}
-           onMouseUp={(e) => this.inputManager.up(e)}>
-        {control.display && <Image Source={`data:image/png;base64,${control.display}`} />}
-        {control.text && <p>{control.text}</p>}
+      <View style={[{ position : 'absolute' }, getStyleSizePosition(control), control.active && styles.active]}>
+        {control.active ? (
+          <TouchableHighlight style={styles.wrapper}
+                              onPressIn={() => this.inputManager.down()}
+                              onPressOut={() => this.inputManager.up()}
+                              delayPressIn={0}
+                              delayPressOut={0}>
+            {this.renderInner(control)}
+          </TouchableHighlight>
+        ) : (
+          this.renderInner(control)
+        )}
       </View>
     );
   }

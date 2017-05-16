@@ -1,18 +1,30 @@
 'use strict';
 
 import React from 'react';
-import { View, Image } from 'react-native';
+import { StyleSheet, View, Image } from 'react-native';
+import { getPhysicalSize } from '../utils/viewport.js';
 
 import Control from './control';
 
-function getStyleSize(window) {
-  const { height, width } = window;
-  return { height, width };
-}
+const styles = StyleSheet.create({
+  backgroundImage: {
+    position   : 'absolute',
+    top        : 0,
+    left       : 0,
+    right      : 0,
+    bottom     : 0,
+    resizeMode : 'contain'
+  }
+});
 
 const WindowContent = ({ window, onActionPrimary, onActionSecondary }) => (
-  <View style={getStyleSize(window)}>
-    <Image source={window.resource && { uri: `data:image/png;base64,${window.resource}`}} />
+  <View style={getPhysicalSize(window)}>
+    <Image style={styles.backgroundImage} source={window.resource && { uri: `data:image/png;base64,${window.resource}`}} />
+    {window.controls.map(control => (<Control key={control.id}
+                                              control={control}
+                                              onActionPrimary={() => onActionPrimary(window.id, control.id)}
+                                              onActionSecondary={() => onActionSecondary(window.id, control.id)}/>))}
+
   </View>
 );
 
@@ -23,12 +35,3 @@ WindowContent.propTypes = {
 };
 
 export default WindowContent;
-
-/*
-
-    {window.controls.map(control => (<Control key={control.id}
-                                              control={control}
-                                              onActionPrimary={() => onActionPrimary(window.id, control.id)}
-                                              onActionSecondary={() => onActionSecondary(window.id, control.id)}/>))}
-
-*/
