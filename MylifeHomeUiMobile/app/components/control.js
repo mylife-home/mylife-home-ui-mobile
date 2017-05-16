@@ -69,8 +69,8 @@ class Control extends React.PureComponent {
   renderInner(control) {
     return (
       <View style={styles.wrapper}>
-        {control.display && (<Image style={styles.image} source={{ uri: `data:image/png;base64,${control.display}`}} />)}
-        {control.text && (<Text style={styles.text}>{control.text}</Text>)}
+        {control.display && (<Image style={styles.image} source={{ uri: `data:image/png;base64,${control.display}`}} />) || null}
+        {control.text && (<Text style={styles.text}>{control.text}</Text>) || null}
       </View>
     );
   }
