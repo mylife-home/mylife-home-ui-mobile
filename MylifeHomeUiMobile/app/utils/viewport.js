@@ -3,9 +3,9 @@
 import { Dimensions } from 'react-native';
 import { screenResize } from '../actions/screen';
 
-export const viewportSetup = () => {
-  Dimensions.addEventListener('change', ({ window }) => screenResize(window));
-  screenResize(Dimensions.get('window'));
+export const viewportSetup = (dispatch) => {
+  Dimensions.addEventListener('change', ({ window }) => dispatch(screenResize(window)));
+  dispatch(screenResize(Dimensions.get('window')));
 };
 
 export const getPhysicalSize = (ratio, size) => ({

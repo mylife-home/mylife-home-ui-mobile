@@ -37,10 +37,10 @@ const styles = StyleSheet.create({
   }
 });
 
-function getStyleSizePosition(control) {
+function getStyleSizePosition(ratio, control) {
   return {
-    ... getPhysicalSize(control),
-    ... getPhysicalPosition(control)
+    ... getPhysicalSize(ratio, control),
+    ... getPhysicalPosition(ratio, control)
   };
 }
 

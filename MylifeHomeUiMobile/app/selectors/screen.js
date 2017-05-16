@@ -5,7 +5,8 @@ import { selectors } from 'mylife-home-ui-common';
 export const getScreen = (state) => state.screen;
 
 export const getRatio = (state) => {
-  const window = selectors.getWindow(state, { window: selectors.getView(state).first() });
+  const wid = selectors.getView(state).first();
+  const window = wid && selectors.getWindow(state, { window: wid });
   const screen = getScreen(state);
   if(!window || !screen.width) { return 1; }
 

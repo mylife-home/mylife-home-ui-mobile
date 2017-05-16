@@ -8,7 +8,6 @@ import { applyMiddleware, createStore } from 'redux';
 import thunk from 'redux-thunk';
 import { middlewares, utils } from 'mylife-home-ui-common';
 import reducer from './reducers/index';
-import viewportMiddleware from './middlewares/viewport';
 
 import View from './containers/view';
 
@@ -19,10 +18,10 @@ utils.setupLocation('http://mylife-home-ui.apps.mti-team2.dyndns.org');
 
 const store = createStore(
   reducer,
-  applyMiddleware(viewportMiddleware, middlewares.socket, middlewares.resources, thunk)
+  applyMiddleware(middlewares.socket, middlewares.resources, thunk)
 );
 
-viewportSetup();
+viewportSetup(action => store.dispatch(action));
 store.dispatch(viewInit());
 
 export default class MylifeHomeUiMobile extends Component {
