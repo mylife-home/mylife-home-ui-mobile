@@ -4,12 +4,14 @@ import { connect } from 'react-redux';
 import { selectors } from 'mylife-home-ui-common';
 import { actionPrimary, actionSecondary } from '../actions/actions';
 import { viewClose } from '../actions/view';
+import { getRatio } from '../selectors/screen';
 
 import Window from '../components/window';
 
 const mapStateToProps = () => (state, props) => ({
   online : selectors.getOnline(state, props),
-  view   : selectors.getViewDisplay(state, props)
+  view   : selectors.getViewDisplay(state, props),
+  ratio  : getRatio(state)
 });
 
 const mapDispatchToProps = (dispatch) => ({

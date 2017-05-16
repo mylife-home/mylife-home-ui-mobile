@@ -17,11 +17,12 @@ const styles = StyleSheet.create({
   }
 });
 
-const WindowContent = ({ window, onActionPrimary, onActionSecondary }) => (
-  <View style={getPhysicalSize(window)}>
+const WindowContent = ({ window, ratio, onActionPrimary, onActionSecondary }) => (
+  <View style={getPhysicalSize(ratio, window)}>
     <Image style={styles.backgroundImage} source={window.resource && { uri: `data:image/png;base64,${window.resource}`}} />
     {window.controls.map(control => (<Control key={control.id}
                                               control={control}
+                                              ratio={ratio}
                                               onActionPrimary={() => onActionPrimary(window.id, control.id)}
                                               onActionSecondary={() => onActionSecondary(window.id, control.id)}/>))}
 
@@ -30,6 +31,7 @@ const WindowContent = ({ window, onActionPrimary, onActionSecondary }) => (
 
 WindowContent.propTypes = {
   window            : React.PropTypes.object.isRequired,
+  ratio             : React.PropTypes.number.isRequired,
   onActionPrimary   : React.PropTypes.func.isRequired,
   onActionSecondary : React.PropTypes.func.isRequired,
 };

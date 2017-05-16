@@ -1,33 +1,19 @@
 'use strict';
 
 import { Dimensions } from 'react-native';
-let logicalWidth, logicalHeight;
+import { screenResize } from '../actions/screen';
 
-export function setDimensions(requiredWidth, requiredHeight) {
-  console.log(`viewport set dimensions: width=${requiredWidth}, heigth=${requiredHeight}`); // eslint-disable-line no-console
-  logicalWidth  = requiredWidth;
-  logicalHeight = requiredHeight;
-}
+export const viewportSetup = () => {
+  Dimensions.addEventListener('change', ({ window }) => screenResize(window));
+  screenResize(Dimensions.get('window'));
+};
 
-function getRatio() {
-  const { width: physWith, height: physHeight } = Dimensions.get('window');
-  const x = physWith / logicalWidth;
-  const y = physHeight / logicalHeight;
-  return Math.min(x, y);
-}
+export const getPhysicalSize = (ratio, size) => ({
+  width  : size.width * ratio,
+  height : size.height * ratio
+});
 
-export function getPhysicalSize(size) {
-  const ratio = getRatio();
-  return {
-    width  : size.width * ratio,
-    height : size.height * ratio
-  };
-}
-
-export function getPhysicalPosition(pos) {
-  const ratio = getRatio();
-  return {
-    left : pos.left * ratio,
-    top  : pos.top * ratio
-  };
-}
+export const getPhysicalPosition = (ratio, pos) => ({
+  left : pos.left * ratio,
+  top  : pos.top * ratio
+});

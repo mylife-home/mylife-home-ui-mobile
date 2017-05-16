@@ -34,7 +34,7 @@ const styles = StyleSheet.create({
   }
 });
 
-function popups(view, onActionPrimary, onActionSecondary, onWindowClose) {
+function popups(view, ratio, onActionPrimary, onActionSecondary, onWindowClose) {
   const components = [];
 /*
   for(const [index, popup] of view.popups.entries()) {
@@ -57,7 +57,7 @@ function popups(view, onActionPrimary, onActionSecondary, onWindowClose) {
   return components;
 }
 
-const Window = ({ online, view, onActionPrimary, onActionSecondary, onWindowClose }) => (
+const Window = ({ online, view, ratio, onActionPrimary, onActionSecondary, onWindowClose }) => (
   <View style={styles.container}>
     {!online && (
       <View style={styles.overlay}>
@@ -72,16 +72,17 @@ const Window = ({ online, view, onActionPrimary, onActionSecondary, onWindowClos
     )}
 
     {online && view && (
-      <WindowContent window={view.main} onActionPrimary={onActionPrimary} onActionSecondary={onActionSecondary} />
+      <WindowContent window={view.main} ratio={ratio} onActionPrimary={onActionPrimary} onActionSecondary={onActionSecondary} />
     )}
 
-    {online && view && popups(view, onActionPrimary, onActionSecondary, onWindowClose)}
+    {online && view && popups(view, ratio, onActionPrimary, onActionSecondary, onWindowClose)}
   </View>
 );
 
 Window.propTypes = {
   online            : React.PropTypes.bool.isRequired,
   view              : React.PropTypes.object,
+  ratio             : React.PropTypes.number.isRequired,
   onActionPrimary   : React.PropTypes.func.isRequired,
   onActionSecondary : React.PropTypes.func.isRequired,
   onWindowClose     : React.PropTypes.func.isRequired,

@@ -13,6 +13,7 @@ import viewportMiddleware from './middlewares/viewport';
 import View from './containers/view';
 
 import { viewInit } from './actions/view';
+import { viewportSetup } from './utils/viewport';
 
 utils.setupLocation('http://mylife-home-ui.apps.mti-team2.dyndns.org');
 
@@ -21,6 +22,7 @@ const store = createStore(
   applyMiddleware(viewportMiddleware, middlewares.socket, middlewares.resources, thunk)
 );
 
+viewportSetup();
 store.dispatch(viewInit());
 
 export default class MylifeHomeUiMobile extends Component {

@@ -27,7 +27,8 @@ const styles = StyleSheet.create({
     top      : 0,
     left     : 0,
     right    : 0,
-    bottom   : 0
+    bottom   : 0,
+    fontSize : 8
   },
   active: {
     borderWidth  : 1,
@@ -75,10 +76,10 @@ class Control extends React.PureComponent {
   }
 
   render() {
-    const { control } = this.props;
+    const { control, ratio } = this.props;
 
     return (
-      <View style={[{ position : 'absolute' }, getStyleSizePosition(control), control.active && styles.active]}>
+      <View style={[{ position : 'absolute' }, getStyleSizePosition(ratio, control), control.active && styles.active]}>
         {control.active ? (
           <TouchableHighlight style={styles.wrapper}
                               onPressIn={() => this.inputManager.down()}
@@ -97,6 +98,7 @@ class Control extends React.PureComponent {
 
 Control.propTypes = {
   control           : React.PropTypes.object.isRequired,
+  ratio             : React.PropTypes.number.isRequired,
   onActionPrimary   : React.PropTypes.func.isRequired,
   onActionSecondary : React.PropTypes.func.isRequired,
 };
