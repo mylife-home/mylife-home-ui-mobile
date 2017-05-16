@@ -11,24 +11,23 @@ export function setDimensions(requiredWidth, requiredHeight) {
 
 function getRatio() {
   const { width: physWith, height: physHeight } = Dimensions.get('window');
-  return {
-    x : physWith / logicalWidth,
-    y : physHeight / logicalHeight
-  };
+  const x = physWith / logicalWidth;
+  const y = physHeight / logicalHeight;
+  return Math.min(x, y);
 }
 
 export function getPhysicalSize(size) {
   const ratio = getRatio();
   return {
-    width  : size.width * ratio.x,
-    height : size.height * ratio.y
+    width  : size.width * ratio,
+    height : size.height * ratio
   };
 }
 
 export function getPhysicalPosition(pos) {
   const ratio = getRatio();
   return {
-    left : pos.left * ratio.x,
-    top  : pos.top * ratio.y
+    left : pos.left * ratio,
+    top  : pos.top * ratio
   };
 }
