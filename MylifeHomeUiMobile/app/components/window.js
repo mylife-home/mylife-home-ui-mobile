@@ -2,9 +2,11 @@
 
 import React from 'react';
 
-import { StyleSheet, Image, View } from 'react-native';
-
+import { StyleSheet, Image, View, Text, Button, TouchableWithoutFeedback } from 'react-native';
+import { getPhysicalSize } from '../utils/viewport.js';
 import WindowContent from './window-content';
+
+const titleHeight = 50;
 
 const styles = StyleSheet.create({
   container: {
@@ -33,29 +35,73 @@ const styles = StyleSheet.create({
     height       : 90,
     borderWidth  : 0,
     borderRadius : 4
+  },
+  popupHeader: {
+    position      : 'absolute',
+    top           : 0,
+    left          : 0,
+    right         : 0,
+    bottom        : 0,
+    height        : titleHeight,
+    justifyContent : 'center',
+    alignItems     : 'center',
+  },
+  popupTitle: {
+    fontSize : 16,
+    borderWidth : 1,
+  },
+  popupCloseButton: {
+    position    : 'absolute',
+    top         : 0,
+    right       : 0,
+    width       : titleHeight,
+    height      : titleHeight,
+    borderWidth : 1,
+  },
+  popupContainer: {
+    backgroundColor : 'rgb(255, 255, 255)',
+    borderColor     : 'rgb(200, 200, 200)',
+    borderWidth     : 1,
+    borderRadius    : 4
+  },
+  popupContent: {
+    position        : 'absolute',
+    top             : titleHeight,
+    left            : 0,
+    right           : 0,
+    bottom          : 0,
+    borderColor     : 'rgb(200, 200, 200)',
+    borderWidth     : 1,
   }
 });
 
 function popups(view, ratio, onActionPrimary, onActionSecondary, onWindowClose) {
   const components = [];
-/*
+
   for(const [index, popup] of view.popups.entries()) {
-    components.push(<div key={`${index}_overlay`} className="mylife-overlay" onTouchTap={onWindowClose} />);
+    const size = getPhysicalSize(ratio, popup);
     components.push(
-      <div key={`${index}_dialog`} className="mylife-window-popup">
-        <div className="modal-content" title={popup.id}>
-          <div className="modal-header">
-            <button onTouchTap={onWindowClose} className="close">x</button>
-            <h4 className="modal-title">{popup.id}</h4>
-          </div>
-          <div className="modal-body">
-            <WindowContent window={popup} onActionPrimary={onActionPrimary} onActionSecondary={onActionSecondary} />
-          </div>
-        </div>
-      </div>
+      <TouchableWithoutFeedback key={`${index}`} onPress={onWindowClose}>
+        <View style={styles.overlay}>
+          {/* disable press on popup background */}
+          <TouchableWithoutFeedback onPress={() => {}}>
+            <View style={[styles.popupContainer, { height: size.height + titleHeight, width: size.width }]}>
+              <View style={styles.popupHeader}>
+                <Text style={styles.popupTitle}>{popup.id}</Text>
+                <View style={styles.popupCloseButton}>
+                  <Button onPress={onWindowClose} title={'x'} />
+                </View>
+              </View>
+              <View style={styles.popupContent}>
+                <WindowContent window={popup} ratio={ratio} onActionPrimary={onActionPrimary} onActionSecondary={onActionSecondary} />
+              </View>
+            </View>
+          </TouchableWithoutFeedback>
+        </View>
+      </TouchableWithoutFeedback>
     );
   }
-*/
+
   return components;
 }
 
