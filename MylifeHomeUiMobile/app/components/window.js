@@ -48,7 +48,6 @@ const styles = StyleSheet.create({
   },
   popupTitle: {
     fontSize : 16,
-    borderWidth : 1,
   },
   popupCloseButton: {
     position    : 'absolute',
@@ -56,7 +55,6 @@ const styles = StyleSheet.create({
     right       : 0,
     width       : titleHeight,
     height      : titleHeight,
-    borderWidth : 1,
   },
   popupContainer: {
     backgroundColor : 'rgb(255, 255, 255)',
