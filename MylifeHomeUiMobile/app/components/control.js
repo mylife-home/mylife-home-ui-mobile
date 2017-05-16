@@ -33,7 +33,6 @@ const styles = StyleSheet.create({
     borderWidth  : 1,
     borderRadius : 4,
     borderColor  : 'rgb(200, 200, 200)'
-    // TODO: animate on hover
   }
 });
 
