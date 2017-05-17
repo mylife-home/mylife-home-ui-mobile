@@ -8,6 +8,7 @@
   },
   "dependencies": {
     "mylife-home-ui-common": "vincent-tr/mylife-home-ui-common",
+    "proxy-polyfill": "^0.1.6",
     "react": "16.0.0-alpha.6",
     "react-native": "^0.44.0"
   },
