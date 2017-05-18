@@ -50,4 +50,4 @@ scp android/app/build/outputs/apk/app-release-signed.apk vincent@app-nux:/var/ww
 Notes :
 =======
 
-android icon creator : https://romannurik.github.io/AndroidAssetStudio/icons-launcher.html
+react native icons : https://www.npmjs.com/package/react-native-icon
