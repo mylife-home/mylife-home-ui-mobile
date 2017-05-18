@@ -45,3 +45,9 @@ Lastly, install apk to device.
 2. adb install {PATH_TO_APK}
 --
 scp android/app/build/outputs/apk/app-release-signed.apk vincent@app-nux:/var/www/mylife-home-deploy/mylife-home-ui-mobile.apk
+
+
+Notes :
+=======
+
+android icon creator : https://romannurik.github.io/AndroidAssetStudio/icons-launcher.html
