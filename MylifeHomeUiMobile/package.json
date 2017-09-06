@@ -1,13 +1,13 @@
 {
   "name": "MylifeHomeUiMobile",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "private": true,
   "scripts": {
     "start": "node node_modules/react-native/local-cli/cli.js start",
     "test": "jest"
   },
   "dependencies": {
-    "mylife-home-ui-common": "vincent-tr/mylife-home-ui-common",
+    "mylife-home-ui-common": "mylife-home/mylife-home-ui-common",
     "react": "16.0.0-alpha.6",
     "react-native": "^0.44.0",
     "react-native-icon": "^0.2.10"
